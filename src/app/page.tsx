@@ -1,6 +1,6 @@
 'use client';
 
-import React, {JSX, Suspense} from 'react';
+import React, {JSX} from 'react';
 import { useTranslations } from 'next-intl';
 import { LocaleSwitcher } from '@/app/components/LocaleSwitcher';
 

@@ -4,19 +4,8 @@ import { useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 
 /**
- * UpdateMetadata Component.
- *
- * @remarks
- * A client-side component that updates the document’s title and meta description based on the current translations.
- * This ensures that page metadata is properly localized.
- *
- * @returns null
- *
- * @example
- * ```tsx
- * // Include within your layout to dynamically update metadata.
- * <UpdateMetadata />
- * ```
+ * UpdateMetadata dynamically sets the document title and meta description based on translations.
+ * This helps with SEO and provides localized metadata.
  */
 export function UpdateMetadata(): null {
 	const t = useTranslations();
@@ -32,6 +21,5 @@ export function UpdateMetadata(): null {
 		}
 		metaDescription.setAttribute('content', t('app.description'));
 	}, [t]);
-
 	return null;
 }

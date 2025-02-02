@@ -1,30 +1,19 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useLocale } from '@/lib/i18n/nextIntlConfig';
+import { useLocaleContext } from '@/contexts/LocaleContext';
 
 /**
- * UpdateHtmlLang Component.
- *
- * @remarks
- * A client-side component that updates the `<html>` element’s `lang` attribute according to the current locale.
- * This is essential for accessibility, SEO, and ensuring that assistive technologies read the correct language.
+ * UpdateHtmlLang updates the <html> element's lang attribute to match the current locale.
+ * This is important for accessibility and SEO in a statically exported site.
  *
  * @returns null
- *
- * @example
- * ```tsx
- * // Include in your layout to dynamically update the HTML language attribute.
- * <UpdateHtmlLang />
- * ```
  */
 export function UpdateHtmlLang(): null {
-	const locale = useLocale();
+	const { locale } = useLocaleContext();
 
 	useEffect(() => {
-		// Update the lang attribute on the <html> element
 		document.documentElement.lang = locale;
 	}, [locale]);
-
 	return null;
 }
