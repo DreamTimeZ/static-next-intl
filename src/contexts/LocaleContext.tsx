@@ -16,8 +16,7 @@ import { LocaleContextProps } from '@/props/localeContext.props';
 import { getStoredLocale, setStoredLocale } from '@/lib/i18n/localeStorage';
 
 /**
- * LocaleContext provides the current locale and a method to update it.
- * It initializes the locale based on localStorage or the browser’s language.
+ * Provides access to the current locale and a method to update it.
  */
 const LocaleContext = createContext<LocaleContextProps>({
 	                                                        locale: DEFAULT_LOCALE,
@@ -25,16 +24,19 @@ const LocaleContext = createContext<LocaleContextProps>({
                                                         });
 
 /**
- * LocaleContextProvider wraps the application to supply locale state.
+ * Wraps the application to supply locale state via React Context.
  *
- * @param children - The child components that require locale context.
- * @returns A JSX element that provides the locale state.
+ * @remarks
+ * - Reads from `localStorage` on mount to determine the initial locale.
+ * - Falls back to the browser's language if no stored locale is available.
+ * - Allows updating the locale via the `setLocale` function, which also persists it to storage.
+ *
+ * @param props - The component props.
+ * @param props.children - The child components that need the locale context.
+ *
+ * @returns A JSX element that provides the locale state to its children.
  */
-export const LocaleContextProvider = ({
-	                                      children,
-                                      }: {
-	children: ReactNode;
-}): JSX.Element => {
+export const LocaleContextProvider = ({ children }: { children: ReactNode }): JSX.Element => {
 	const [locale, setLocaleState] = useState<Locale>(DEFAULT_LOCALE);
 
 	useEffect(() => {
@@ -54,22 +56,18 @@ export const LocaleContextProvider = ({
 	}, []);
 
 	/**
-	 * Updates the locale state and optionally updates the URL query parameter.
+	 * Updates the locale state and persists it in localStorage.
 	 *
 	 * @param newLocale - The new locale to set.
-	 * @param updateUrl - If true, the URL is updated to include the new locale.
 	 */
-	const setLocale = useCallback(
-		(newLocale: Locale) => {
-			setLocaleState(newLocale);
-			try {
-				setStoredLocale(newLocale);
-			} catch (error) {
-				console.error('Error saving locale to localStorage', error);
-			}
-		},
-		[]
-	);
+	const setLocale = useCallback((newLocale: Locale) => {
+		setLocaleState(newLocale);
+		try {
+			setStoredLocale(newLocale);
+		} catch (error) {
+			console.error('Error saving locale to localStorage', error);
+		}
+	}, []);
 
 	return (
 		<LocaleContext.Provider value={{ locale, setLocale }}>
@@ -79,8 +77,8 @@ export const LocaleContextProvider = ({
 };
 
 /**
- * Custom hook to consume the LocaleContext.
+ * A custom hook for using the current locale context.
  *
- * @returns The locale and setLocale function from context.
+ * @returns The locale and the function to update the locale.
  */
 export const useLocaleContext = (): LocaleContextProps => useContext(LocaleContext);

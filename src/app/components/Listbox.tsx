@@ -4,6 +4,21 @@ import React, { useRef, useEffect, JSX } from 'react';
 import { useListboxNavigation } from '@/hooks/useListboxNavigation';
 import { ListboxProps } from '@/props/components/listbox.props';
 
+/**
+ * A configurable listbox component for selecting an item.
+ *
+ * @remarks
+ * This component:
+ *  - Uses a list of items passed in via props.
+ *  - Handles keyboard navigation (up/down/enter/escape).
+ *  - Syncs and displays the currently active item.
+ *  - Supports mouse interactions for selection and hover.
+ *  - Is only rendered when `isOpen` is true.
+ *
+ * @param props - The props for configuring the listbox.
+ *
+ * @returns A JSX element that renders the listbox, or `null` if `isOpen` is false.
+ */
 export function Listbox({
 	                        isOpen,
 	                        items,
@@ -14,11 +29,7 @@ export function Listbox({
 	const listRef = useRef<HTMLUListElement>(null);
 
 	const { activeIndex: localIndex, setActiveIndex, handleKeyDown } =
-		useListboxNavigation(
-			items.length,
-			onSelectAction,
-			onEscapeAction
-		);
+		useListboxNavigation(items.length, onSelectAction, onEscapeAction);
 
 	// Sync parent's activeIndex with our localIndex
 	useEffect(() => {

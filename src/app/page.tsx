@@ -5,15 +5,13 @@ import { useTranslations } from 'next-intl';
 import { LocaleSwitcher } from '@/app/components/LocaleSwitcher';
 
 /**
- * Main Page Component for the application.
+ * The main application page.
  *
  * @remarks
- * This client component renders the homepage with internationalized content and includes a LocaleSwitcher
- * to allow users to change the application language.
+ * This client component renders localized text via {@link useTranslations},
+ * and includes a {@link LocaleSwitcher} for changing the application's language.
  *
- * @returns A JSX element representing the page content.
- *
- * @see {@link https://nextjs.org/docs/pages/building-your-application/routing/pages-and-layouts}
+ * @returns A JSX element representing the home page content.
  */
 export default function Page(): JSX.Element {
     const t = useTranslations('app');

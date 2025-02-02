@@ -1,15 +1,12 @@
 /**
- * Locale Enum.
- *
- * @remarks
- * Enumerates the locale codes used throughout the application.
+ * Locale codes used throughout the application.
  *
  * @enum {string}
  *
  * @example
  * ```typescript
- * import { Locale } from '@/constants/enums/locale.enum';
- * console.log(Locale.ENGLISH); // Output: 'en'
+ * console.log(Locale.ENGLISH); // 'en'
+ * console.log(Locale.GERMAN);  // 'de'
  * ```
  */
 export enum Locale {

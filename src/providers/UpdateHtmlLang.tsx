@@ -4,10 +4,12 @@ import { useEffect } from 'react';
 import { useLocaleContext } from '@/contexts/LocaleContext';
 
 /**
- * UpdateHtmlLang updates the <html> element's lang attribute to match the current locale.
- * This is important for accessibility and SEO in a statically exported site.
+ * Updates the `<html>` element's `lang` attribute to the current locale.
  *
- * @returns null
+ * @remarks
+ * Essential for SEO and accessibility in a static site.
+ *
+ * @returns `null` — this is a side-effect-only component.
  */
 export function UpdateHtmlLang(): null {
 	const { locale } = useLocaleContext();
@@ -15,5 +17,6 @@ export function UpdateHtmlLang(): null {
 	useEffect(() => {
 		document.documentElement.lang = locale;
 	}, [locale]);
+
 	return null;
 }

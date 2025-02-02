@@ -1,42 +1,63 @@
-# Static Next Intl
+# Static Next.js + next-intl Example
 
-A Next.js/React frontend project featuring internationalization and static generation. This project leverages Tailwind
-CSS and SCSS for styling, and uses pnpm for efficient dependency management.
+This project demonstrates how to build a **statically-exported** Next.js application (`output: export`) with
+multilingual support via [**next-intl**](https://github.com/amannn/next-intl). It also features:
 
----
+- **TypeScript** for type safety
+- **Tailwind CSS** and custom SCSS for styling
+- **React Context** to manage the selected locale
+- **Locale storage** in `localStorage`
 
-## Overview
+## Quick Overview
 
-Static Next Intl provides:
-- **Internationalization:** Powered by [next-intl](https://github.com/amannn/next-intl) with dynamic locale switching.
-- **Static Generation:** Leveraging Next.js capabilities for optimal performance and SEO.
-- **Robust Architecture:** Structured with clear separation of concerns—pages, components, constants, libraries, models,
-  and providers.
-- **Efficient Dependency Management:** Managed with pnpm, offering fast installs and a lightweight node_modules
-  structure.
+- The project is configured so that **Next.js** exports a static site (rather than using server-side rendering).
+- It uses **next-intl** for handling translations, providing an `IntlProvider` per locale.
+- There’s a **LocaleSwitcher** component allowing users to switch between English and German, with locale preferences
+  saved to `localStorage`.
 
----
+## Getting Started
 
-## Features
+1. **Install Dependencies**
 
-- **Locale Management:**
-    - Automatic locale detection from URL, localStorage, or browser settings.
-    - A user-friendly locale switcher with custom icons.
-    - Dynamic updates to `<html lang="...">` and document metadata for accessibility and SEO.
+   ```bash
+   pnpm install
+   ```
+   <sup>_Uses `pnpm`, but any package manager would work._</sup>
 
-- **Styling:**
-    - Global styles using Tailwind CSS and SCSS.
+2. **Run in Development Mode**
 
-- **Internationalization:**
-    - Easy addition of new locales via configuration files.
-    - Translation messages loaded from JSON files.
+   ```bash
+   pnpm dev
+   ```
+   This starts a local dev server on [http://localhost:3000](http://localhost:3000).
 
----
+3. **Build and Start**
 
-## Prerequisites
+   ```bash
+   pnpm build
+   pnpm start
+   ```
+   - `next build` generates static HTML files under the `out/` directory.
+   - `next start` starts the application from the `out/` dir.
 
-- **Node.js:** Version 16 or later.
-- **pnpm:** Install globally if not already installed:
-  ```text
-  npm install -g pnpm
-  ```
+## Tips & Notes
+
+1. **Locale Detection**  
+   In this example, the locale is fetched from `localStorage` or falls back to the browser language. Adapt the logic
+   to match your project requirements.
+
+2. **Adding New Languages**  
+   - Extend `Locale.enum.ts` for the new locale (e.g., `fr`).
+   - Add the corresponding JSON translations in `@messages/`.
+   - Update `messagesMap` in `nextIntlConfig.ts` to map the new locale to its messages.
+   - Add a new icon and entry in `locales.config.ts`.
+
+3. **SEO & Accessibility**  
+   - The `<html lang>` attribute is dynamically updated for better accessibility and SEO.
+   - `UpdateMetadata` modifies the `<title>` and `<meta name="description">` for each locale.
+
+4. **Styling**  
+   - **Tailwind** is used for utility classes.
+   - **SCSS** is used for global styling (`globals.scss`) and can be extended for custom themes or overrides.
+
+Feel free to customize any part of the code to suit your needs!

@@ -4,8 +4,13 @@ import { useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 
 /**
- * UpdateMetadata dynamically sets the document title and meta description based on translations.
- * This helps with SEO and provides localized metadata.
+ * Dynamically updates document title and meta description based on translations.
+ *
+ * @remarks
+ * - Uses `next-intl` translations for `app.title` and `app.description`.
+ * - Creates a `<meta>` element if it doesn't exist.
+ *
+ * @returns `null` — this is a side-effect-only component.
  */
 export function UpdateMetadata(): null {
 	const t = useTranslations();
@@ -21,5 +26,6 @@ export function UpdateMetadata(): null {
 		}
 		metaDescription.setAttribute('content', t('app.description'));
 	}, [t]);
+
 	return null;
 }

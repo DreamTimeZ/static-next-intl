@@ -1,14 +1,24 @@
 'use client';
 
-import React, {useState, useCallback, useRef, JSX} from 'react';
+import React, { useState, useCallback, useRef, JSX } from 'react';
 import { useTranslations } from 'next-intl';
 import { LOCALES_INFO } from '@/constants/locales.config';
 import { useLocaleContext } from '@/contexts/LocaleContext';
 import { useClickOutside } from '@/hooks/useClickOutside';
 import { Listbox } from './Listbox';
 import { Locale } from '@/constants/enums/locale.enum';
-import {ListboxItem} from '@/props/components/listbox.props';
+import { ListboxItem } from '@/props/components/listbox.props';
 
+/**
+ * A drop-down locale switcher component.
+ *
+ * @remarks
+ * Displays a button that, when clicked, reveals a listbox allowing the user to switch locales.
+ * Clicks outside the component close the listbox.
+ * Selected locale is stored in context via {@link useLocaleContext}.
+ *
+ * @returns A JSX element containing the switcher UI.
+ */
 export function LocaleSwitcher(): JSX.Element {
 	const { locale, setLocale } = useLocaleContext();
 	const t = useTranslations();
@@ -53,8 +63,7 @@ export function LocaleSwitcher(): JSX.Element {
 				aria-haspopup="listbox"
 				aria-expanded={isOpen}
 			>
-				{/* Safely show the current icon & label,
-            using the pattern to avoid TS confusion */}
+				{/* Safely show the current icon & label using the pattern below. */}
 				{(() => {
 					const CurrentIcon = items[currentIndex]?.Icon;
 					return CurrentIcon ? <CurrentIcon /> : null;

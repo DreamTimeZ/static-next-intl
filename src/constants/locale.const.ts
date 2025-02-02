@@ -2,24 +2,26 @@ import { Locale } from '@/constants/enums/locale.enum';
 import { Timezone } from 'use-intl';
 
 /**
- * Locale Constants.
+ * Locale constants for the application.
  *
  * @remarks
- * Defines the fallback locale, timezone, and supported locales used in the application.
- *
- * @constant DEFAULT_LOCALE - The fallback locale when no other locale is determined.
- * @constant DEFAULT_TIMEZONE - The fallback timezone.
- * @constant SUPPORTED_LOCALES - An array of supported locale codes.
+ * - **DEFAULT_LOCALE**: Fallback locale when none is determined.
+ * - **DEFAULT_TIMEZONE**: Fallback timezone for date/time formatting.
+ * - **SUPPORTED_LOCALES**: All locales that the application supports.
  *
  * @example
  * ```typescript
- * import { DEFAULT_LOCALE } from '@/constants/locale.const';
- * console.log(DEFAULT_LOCALE);
+ * console.log(DEFAULT_LOCALE); // 'de'
  * ```
  */
-
 export const DEFAULT_LOCALE: Locale = Locale.GERMAN;
 
+/**
+ * Default fallback timezone.
+ */
 export const DEFAULT_TIMEZONE: Timezone = 'Europe/Berlin';
 
+/**
+ * An array of supported locale codes.
+ */
 export const SUPPORTED_LOCALES: Locale[] = Object.values(Locale);

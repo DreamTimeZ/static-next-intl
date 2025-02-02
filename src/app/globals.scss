@@ -1,11 +1,10 @@
 /**
  * Global Styles
- * Imported globally in your layout file.
  *
  * @remarks
- * This file imports Tailwind CSS’s base, components, and utilities while defining custom CSS variables
- * for light and dark themes. It also sets default styles for the HTML body.
- *
+ * - Imports Tailwind CSS base, components, and utilities.
+ * - Defines custom CSS variables for light and dark themes.
+ * - Sets default font and color styles for the body.
  */
 
 @tailwind base;

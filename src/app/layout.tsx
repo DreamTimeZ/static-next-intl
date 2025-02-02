@@ -2,17 +2,24 @@ import './globals.scss';
 import { JSX, ReactNode } from 'react';
 import { UpdateHtmlLang } from '@/providers/UpdateHtmlLang';
 import { UpdateMetadata } from '@/providers/UpdateMetadata';
-import {LocaleContextProvider} from '@/contexts/LocaleContext';
+import { LocaleContextProvider } from '@/contexts/LocaleContext';
 import { ClientLayout } from '@/app/ClientLayout';
-import {DEFAULT_LOCALE} from '@/constants/locale.const';
+import { DEFAULT_LOCALE } from '@/constants/locale.const';
 
 /**
- * RootLayout component wraps the application with the locale and intl providers.
- * For static export, the <html> lang attribute is initially set to DEFAULT_LOCALE,
- * then updated on the client.
+ * The root layout of the Next.js application.
  *
- * @param children - The child nodes of the layout.
- * @returns A JSX element representing the overall layout.
+ * @remarks
+ * This layout:
+ *  - Imports global styles.
+ *  - Sets the initial `<html lang>` attribute to the default locale, which is then updated client‑side.
+ *  - Wraps the app with the {@link LocaleContextProvider} and {@link ClientLayout}.
+ *  - Provides dynamic HTML `<lang>` updates and metadata updates via respective providers.
+ *
+ * @param props - The component props.
+ * @param props.children - The child nodes for the layout.
+ *
+ * @returns A JSX element representing the overall layout structure.
  */
 export default function RootLayout({ children }: { children: ReactNode }): JSX.Element {
 	return (

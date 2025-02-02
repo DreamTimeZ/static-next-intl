@@ -3,13 +3,21 @@
 import React, { useState, useCallback } from 'react';
 
 /**
- * Custom hook to manage keyboard navigation for listbox components.
+ * A custom hook for managing keyboard navigation in a listbox.
  *
- * @param itemCount - The number of items in the list.
- * @param onSelect - Callback invoked when an item is selected (via Enter key).
- * @param onEscape - Optional callback invoked when Escape is pressed.
+ * @remarks
+ * - Supports wrapping around items when navigating up/down.
+ * - Calls `onSelect` when the Enter key is pressed.
+ * - Calls `onEscape` (if provided) when the Escape key is pressed.
  *
- * @returns An object containing the active index, a setter for it, and a keydown handler.
+ * @param itemCount - The total number of items in the list.
+ * @param onSelect - Invoked when an item is selected with the Enter key.
+ * @param onEscape - (Optional) Invoked when the Escape key is pressed.
+ *
+ * @returns An object containing:
+ *  - `activeIndex`: The current focused index in the list.
+ *  - `setActiveIndex`: Setter for manually changing the active index.
+ *  - `handleKeyDown`: A keydown event handler to manage keyboard interactions.
  */
 export function useListboxNavigation(
 	itemCount: number,

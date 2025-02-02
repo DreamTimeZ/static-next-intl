@@ -2,16 +2,21 @@
 
 import React, { JSX, ReactNode } from 'react';
 import { IntlProvider } from 'next-intl';
-import { getMessages } from '@/lib/i18n/nextIntlConfig';
-import { useTimeZone } from '@/lib/i18n/nextIntlConfig';
+import { getMessages, useTimeZone } from '@/lib/i18n/nextIntlConfig';
 import { useLocaleContext } from '@/contexts/LocaleContext';
 
 /**
- * ClientLayout wraps the application with the next‑intl IntlProvider.
- * It supplies the current locale, translation messages, and timezone to all child components.
+ * A client-side layout component that wraps its children in a Next IntlProvider.
  *
- * @param children - The React nodes that require internationalization.
- * @returns A JSX element providing the intl context.
+ * @remarks
+ * This component retrieves the current locale from the {@link useLocaleContext} hook, obtains
+ * corresponding translation messages, and sets the time zone for the IntlProvider.
+ * It is intended to be used on the client side only.
+ *
+ * @param props - The component props.
+ * @param props.children - The content nested under this layout.
+ *
+ * @returns A JSX element providing the internationalization context to child components.
  */
 export function ClientLayout({ children }: { children: ReactNode }): JSX.Element {
 	const { locale } = useLocaleContext();

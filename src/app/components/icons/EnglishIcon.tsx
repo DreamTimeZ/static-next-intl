@@ -1,17 +1,13 @@
-import React, {JSX} from 'react';
+import React, { JSX } from 'react';
 
 /**
- * EnglishIcon Component.
+ * An SVG icon representing the English (UK) flag.
  *
- * @remarks
- * Renders an SVG icon representing the English flag. Used as part of the locale selection UI.
- *
- * @param props - Standard SVG properties.
+ * @param props - Standard SVG properties passed to the component.
  * @returns A JSX element rendering the English flag icon.
  *
  * @example
  * ```tsx
- * import { EnglishIcon } from './icons/EnglishIcon';
  * <EnglishIcon className="w-6 h-6" />
  * ```
  */

@@ -1,14 +1,17 @@
 /**
- * Retrieves the stored locale from localStorage.
- *
- * @returns The stored locale as a string, or null if not found or on error.
+ * Retrieves a stored locale string from `localStorage`.
  *
  * @remarks
- * If localStorage access fails (for example, in a server-side context), an error is logged and null is returned.
+ * Returns `null` if reading fails or if no locale is stored.
+ *
+ * @returns The stored locale as a string, or `null` if none is found.
  *
  * @example
  * ```typescript
  * const locale = getStoredLocale();
+ * if (locale) {
+ *   console.log(`Stored locale: ${locale}`);
+ * }
  * ```
  */
 export const getStoredLocale = (): string | null => {
@@ -21,12 +24,12 @@ export const getStoredLocale = (): string | null => {
 };
 
 /**
- * Persists the given locale to localStorage.
- *
- * @param locale - The locale string to save.
+ * Persists the given locale string to `localStorage`.
  *
  * @remarks
- * In case of an error (e.g., storage quota exceeded), the error is caught and logged.
+ * Logs an error if writing fails (e.g., storage quota is exceeded).
+ *
+ * @param locale - The locale string to store.
  *
  * @example
  * ```typescript

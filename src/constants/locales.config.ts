@@ -4,27 +4,32 @@ import { GermanIcon } from '@/app/components/icons/GermanIcon';
 import { LocaleInfo } from '@/models/locale.model';
 
 /**
- * Locales Configuration.
+ * Array of configurations for each supported locale.
  *
  * @remarks
- * Provides the configuration details for each supported locale, including the locale code,
- * the translation key, and the associated icon component.
+ * Each entry includes:
+ *  - A locale code of type {@link Locale}
+ *  - A translation key used in messages
+ *  - An icon component representing the flag
  *
  * @example
  * ```typescript
- * import { LOCALES_INFO } from '@/constants/locales.config';
  * console.log(LOCALES_INFO);
+ * // [
+ * //   { code: 'en', translationKey: 'locales.english', Icon: [Function EnglishIcon] },
+ * //   { code: 'de', translationKey: 'locales.german', Icon: [Function GermanIcon] }
+ * // ]
  * ```
  */
 export const LOCALES_INFO: LocaleInfo[] = [
 	{
 		code: Locale.ENGLISH,
-		translationKey: 'locales.english', // key in the translation file for English
+		translationKey: 'locales.english',
 		Icon: EnglishIcon,
 	},
 	{
 		code: Locale.GERMAN,
-		translationKey: 'locales.german', // key in the translation file for German
+		translationKey: 'locales.german',
 		Icon: GermanIcon,
 	},
 ];

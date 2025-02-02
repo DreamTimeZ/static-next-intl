@@ -1,17 +1,13 @@
-import React, {JSX} from 'react';
+import React, { JSX } from 'react';
 
 /**
- * GermanIcon Component.
+ * An SVG icon representing the German flag.
  *
- * @remarks
- * Renders an SVG icon representing the German flag. Used as part of the locale selection UI.
- *
- * @param props - Standard SVG properties.
+ * @param props - Standard SVG properties passed to the component.
  * @returns A JSX element rendering the German flag icon.
  *
  * @example
  * ```tsx
- * import { GermanIcon } from './icons/GermanIcon';
  * <GermanIcon className="w-6 h-6" />
  * ```
  */
