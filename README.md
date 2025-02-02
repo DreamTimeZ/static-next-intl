@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Static Next Intl
 
-## Getting Started
+A Next.js/React frontend project featuring internationalization and static generation. This project leverages Tailwind
+CSS and SCSS for styling, and uses pnpm for efficient dependency management.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Overview
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Static Next Intl provides:
+- **Internationalization:** Powered by [next-intl](https://github.com/amannn/next-intl) with dynamic locale switching.
+- **Static Generation:** Leveraging Next.js capabilities for optimal performance and SEO.
+- **Robust Architecture:** Structured with clear separation of concerns—pages, components, constants, libraries, models,
+  and providers.
+- **Efficient Dependency Management:** Managed with pnpm, offering fast installs and a lightweight node_modules
+  structure.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Features
 
-## Learn More
+- **Locale Management:**
+    - Automatic locale detection from URL, localStorage, or browser settings.
+    - A user-friendly locale switcher with custom icons.
+    - Dynamic updates to `<html lang="...">` and document metadata for accessibility and SEO.
 
-To learn more about Next.js, take a look at the following resources:
+- **Styling:**
+    - Global styles using Tailwind CSS and SCSS.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Internationalization:**
+    - Easy addition of new locales via configuration files.
+    - Translation messages loaded from JSON files.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Prerequisites
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Node.js:** Version 16 or later.
+- **pnpm:** Install globally if not already installed:
+  ```text
+  npm install -g pnpm
+  ```

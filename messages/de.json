@@ -1,0 +1,11 @@
+{
+  "app": {
+    "title": "static-next-intl (de)",
+    "description": "Statische Website, die next-intl nur für die Internationalisierung auf der Client-Seite verwendet",
+    "loading": "Lädt..."
+  },
+  "locales": {
+    "english": "Englisch",
+    "german": "Deutsch"
+  }
+}
