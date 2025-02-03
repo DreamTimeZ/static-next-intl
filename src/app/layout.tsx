@@ -21,7 +21,7 @@ import { DEFAULT_LOCALE } from '@/constants/locale.const';
  *
  * @returns A JSX element representing the overall layout structure.
  */
-export default function RootLayout({ children }: { children: ReactNode }): JSX.Element {
+export default function RootLayout({ children }: Readonly<{ children: ReactNode }>): JSX.Element {
 	return (
 		<html lang={DEFAULT_LOCALE}>
 		<body>

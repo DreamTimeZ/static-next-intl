@@ -18,7 +18,7 @@ import { useLocaleContext } from '@/contexts/LocaleContext';
  *
  * @returns A JSX element providing the internationalization context to child components.
  */
-export function ClientLayout({ children }: { children: ReactNode }): JSX.Element {
+export function ClientLayout({ children }: Readonly<{ children: ReactNode }>): JSX.Element {
 	const { locale } = useLocaleContext();
 	const messages = getMessages(locale);
 	const timeZone = useTimeZone();

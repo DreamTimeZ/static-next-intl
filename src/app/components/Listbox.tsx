@@ -25,7 +25,7 @@ export function Listbox({
 	                        activeIndex,
 	                        onSelectAction,
 	                        onEscapeAction,
-                        }: ListboxProps): JSX.Element | null {
+                        }: Readonly<ListboxProps>): JSX.Element | null {
 	const listRef = useRef<HTMLUListElement>(null);
 
 	const { activeIndex: localIndex, setActiveIndex, handleKeyDown } =
