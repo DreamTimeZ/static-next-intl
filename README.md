@@ -46,7 +46,8 @@ multilingual support via [**next-intl**](https://github.com/amannn/next-intl). I
    In this example, the locale is fetched from `localStorage` or falls back to the browser language. Adapt the logic
    to match your project requirements.
 
-2. **Adding New Languages**  
+2. **Adding New Locales/Languages**
+   - Naming: Locale used (instead of language) to make it scalable for later changes to a real locale like 'en-GB'.
    - Extend `Locale.enum.ts` for the new locale (e.g., `fr`).
    - Add the corresponding JSON translations in `@messages/`.
    - Update `messagesMap` in `nextIntlConfig.ts` to map the new locale to its messages.

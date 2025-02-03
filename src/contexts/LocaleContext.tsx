@@ -8,20 +8,20 @@ import React, {
 	ReactNode,
 	JSX,
 	useCallback,
+	useMemo,
 } from 'react';
 import { Locale } from '@/constants/enums/locale.enum';
 import { DEFAULT_LOCALE } from '@/constants/locale.const';
 import { normalizeLocale } from '@/lib/i18n/nextIntlConfig';
-import { LocaleContextProps } from '@/props/localeContext.props';
-import { getStoredLocale, setStoredLocale } from '@/lib/i18n/localeStorage';
+import { LocaleContextProps } from '@/props/contexts/localeContext.props';
 
 /**
  * Provides access to the current locale and a method to update it.
  */
 const LocaleContext = createContext<LocaleContextProps>({
-	                                                        locale: DEFAULT_LOCALE,
-	                                                        setLocale: () => {},
-                                                        });
+	locale: DEFAULT_LOCALE,
+	setLocale: () => {},
+});
 
 /**
  * Wraps the application to supply locale state via React Context.
@@ -37,21 +37,21 @@ const LocaleContext = createContext<LocaleContextProps>({
  * @returns A JSX element that provides the locale state to its children.
  */
 export const LocaleContextProvider = ({ children }: { children: ReactNode }): JSX.Element => {
-	const [locale, setLocaleState] = useState<Locale>(DEFAULT_LOCALE);
+	const [locale, setLocale] = useState<Locale>(DEFAULT_LOCALE);
 
 	useEffect(() => {
 		try {
-			const stored = getStoredLocale();
+			const stored = localStorage.getItem('locale');
 			if (stored) {
-				setLocaleState(normalizeLocale(stored));
+				setLocale(normalizeLocale(stored));
 				return;
 			}
 		} catch (error) {
 			console.error('Error accessing localStorage', error);
 		}
-		// Fallback to browser language
+		// Fallback to browser language if available
 		if (navigator?.language) {
-			setLocaleState(normalizeLocale(navigator.language));
+			setLocale(normalizeLocale(navigator.language));
 		}
 	}, []);
 
@@ -60,17 +60,26 @@ export const LocaleContextProvider = ({ children }: { children: ReactNode }): JS
 	 *
 	 * @param newLocale - The new locale to set.
 	 */
-	const setLocale = useCallback((newLocale: Locale) => {
-		setLocaleState(newLocale);
+	const updateLocale = useCallback((newLocale: Locale) => {
+		setLocale(newLocale);
 		try {
-			setStoredLocale(newLocale);
+			localStorage.setItem('locale', newLocale);
 		} catch (error) {
 			console.error('Error saving locale to localStorage', error);
 		}
 	}, []);
 
+	// Memoize the context value to prevent unnecessary re-renders.
+	const contextValue = useMemo(
+		() => ({
+			locale,
+			setLocale: updateLocale,
+		}),
+		[locale, updateLocale]
+	);
+
 	return (
-		<LocaleContext.Provider value={{ locale, setLocale }}>
+		<LocaleContext.Provider value={contextValue}>
 			{children}
 		</LocaleContext.Provider>
 	);
